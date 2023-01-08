@@ -40,7 +40,7 @@
     <% Array.from(Demande).forEach((item)=> {%>
     <td><%=item?._id %></td>
     <%if(item.salle !== undefined && item.batiment !== null ){ %>
-    <td><%=item.salle+item.batiment%></td>
+    <td><%=item.batiment+item.salle%></td>
     <% } ;
     if(item.terrain !== undefined && item.terrain !== null ){ %>
         <td><%=item.terrain%></td>
