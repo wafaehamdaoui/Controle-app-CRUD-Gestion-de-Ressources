@@ -47,7 +47,7 @@
 </tr>
 <tr>
     <% Array.from(Demande).forEach((item)=> { 
-        if(item?.salle !== undefined && item.status===undefined){ %>
+        if(item?.salle !== undefined && item.status==="En Attente"){ %>
     <td><%=item?._id %></td>
     <td><%=item?.matricul %></td>
     <td><%=item?.nom %></td>
@@ -79,7 +79,7 @@
     </tr>
     <tr>
         <% Array.from(Demande).forEach((item)=> { 
-            if(item?.music !== undefined && item.status===undefined){ %>
+            if(item?.music !== undefined && item.status==="En Attente"){ %>
         <td><%=item?._id %></td>
         <td><%=item?.matricul %></td>
         <td><%=item?.nom %></td>
@@ -111,7 +111,7 @@
     </tr>
     <tr>
         <% Array.from(Demande).forEach((item)=> {
-            if(item?.terrain !== undefined && item.status===undefined){ %>
+            if(item?.terrain !== undefined && item.status==="En Attente"){ %>
         <td><%=item?._id %></td>
         <td><%=item?.matricul %></td>
         <td><%=item?.nom %></td>
@@ -143,7 +143,7 @@
 </tr>
 <tr>
     <% Array.from(Demande).forEach((item)=> {
-        if(item?.place !== undefined && item.status===undefined){ %>
+        if(item?.place !== undefined && item.status==="En Attente"){ %>
     <td><%=item?._id %></td>
     <td><%=item?.matricul %></td>
     <td><%=item?.nom %></td>
@@ -175,7 +175,7 @@
     </tr>
     <tr>
         <% Array.from(Demande).forEach((item)=> {
-            if(item?.pc !== undefined && item.status===undefined){ %>
+            if(item?.pc !== undefined && item.status==="En Attente"){ %>
         <td><%=item?._id %></td>
         <td><%=item?.matricul %></td>
         <td><%=item?.nom %></td>
