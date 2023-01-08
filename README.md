@@ -1,4 +1,4 @@
-Welcome to myproject's documentation!
+Welcome to my project's documentation!
 =====================================
 # CRUD-Application-
 CRUD Application With node.js in the contexe of smart university
@@ -98,6 +98,22 @@ UEMF resources is an application, which will be used by university students most
 ### Server/api:
 This part concerns the routing for more details you can see the file app.js 
 
+#### Create:
+Allows you to add new account to users database.
+Allows you to add new request a resource to demande database.
+
+#### Read
+Read is the operation that allows us to see the requests(demandes) we just created, 
+Read is the operation that allows us to see the acounts we just created, 
+
+#### Update
+By default status of a request is "En Attente", When the admin validate a request(demande) we update the status to "Validée".
+By default status of a request is "En Attente", When the admin reject a request(demande) we update the status to "Rejetée".
+
+#### Delete
+When a student cancel a request(demande).
+When the admin remove a request(demande).
+
 ## `Summary`:
 Currently my application allows me:
 - Show tables:
@@ -126,4 +142,4 @@ Currently my application allows me:
 skills including new in web development and familiarize myself a little more with node js I learned a lot, both on the development part web, than on the database part. This experience will be an asset for the pursuit of my studies and for my professional career.
 
                                                                                                                             
-                                                                                                                            Thank you for your attention!
+                                                                  Thank you for your attention!
