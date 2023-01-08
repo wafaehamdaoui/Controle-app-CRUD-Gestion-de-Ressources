@@ -177,31 +177,32 @@ app.get("/valide/:id",isLoggedIn,(req,res)=>{
     Demande.findByIdAndUpdate(id,{status:"Validée"},{new:true},(err,demande)=>{
     if(demande){
         mtr = demande.matricul;
+        console.log('matricul',mtr)
+        User.findOne({matricul:mtr},(error,dest)=>{
+            if(dest){
+                console.log("email",dest.email)
+                var mailOptions = {
+                    from: 'hamdaouiwafae2000@gmail.com',
+                    to: dest.email,
+                    subject: 'Confirmation message',
+                    text: 'Votre réservation est validée !'
+                  };
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
+            }else{
+                res.send(error)
+            }
+            })
         res.redirect("/valide")
     }else {
         res.send(err.message)
     }
     })
-    User.findOne(mtr,(error,user)=>{
-        if(user){
-            console.log("email",user.email)
-            var mailOptions = {
-                from: 'hamdaouiwafae2000@gmail.com',
-                to: user.email,
-                subject: 'Confirmation message',
-                text: 'Votre réservation est validée !'
-              };
-              transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log('Email sent: ' + info.response);
-                }
-              });
-        }else{
-            res.send(error)
-        }
-        })
 });
 app.get("/valideTous",isLoggedIn,(req,res)=>{
     Demande.updateMany({},{status:"Validée"},{new:true},(err,demande)=>{
