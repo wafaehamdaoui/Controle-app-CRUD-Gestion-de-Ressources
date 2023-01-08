@@ -269,12 +269,12 @@ app.get("/deleteU/:id",isLoggedIn,(req,res)=>{
 });
 
 app.post("/demandeSalle",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({salle:salle,duree:duree,date:date,batiment:batiment,status:"Validée"},(err,demande)=>{
     if(demande){
     res.render("message")
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -287,12 +287,12 @@ app.post("/demandeSalle",(req,res)=>{
     });
 
     app.post("/demandeMusic",(req,res)=>{
-        const {matricul,nom,prenom,ecole,date,duree,motif,salle,music,batiment,terrain,place,pc} =req.body;
+        const {matricul,nom,prenom,ecole,date,duree,motif,music,salle,batiment,terrain,place,pc} =req.body;
         Demande.findOne({music:music,duree:duree,date:date,batiment:batiment,status:"Validée"},(err,demande)=>{
         if(demande){
         res.render("message")
         }else {
-        const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc})
+        const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,music,salle,batiment,terrain,place,pc})
         demande.save(err=>{
         if(err){
         res.send(err.message)
@@ -330,12 +330,12 @@ app.post("/reject/:id",(req,res)=>{
 })
 
 app.post("/demandeTerrain",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({terrain:terrain,duree:duree,date:date,status:"Validée"},(err,demande)=>{
     if(demande){
     res.send({message:"ressouce already reserved"})
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,terrain,salle,batiment,place,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,terrain,salle,batiment,music,place,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -347,12 +347,12 @@ app.post("/demandeTerrain",(req,res)=>{
     })
     })
 app.post("/demandeBiblio",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({duree:duree,date:date,place:place,status:"Validée"},(err,demande)=>{
     if(demande){
     res.render("message.ejs")
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,terrain,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,music,terrain,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -365,12 +365,12 @@ app.post("/demandeBiblio",(req,res)=>{
     })
 
 app.post("/demandePc",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({duree:duree,date:date,pc:pc,status:"Validée"},(err,demande)=>{
     if(demande){
     res.send({message:"ressouce already reserved"})
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,terrain,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,music,terrain,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)

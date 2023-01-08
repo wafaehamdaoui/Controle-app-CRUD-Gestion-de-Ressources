@@ -12,6 +12,6 @@ const DemandeSchema = new mongoose.Schema({
     date:{type:Date,unique:false,undefined:false},
     duree:{type:String,unique:false,undefined:false},
     motif:{type:String,unique:false,undefined:false},
-    status:{type:String,unique:false,undefined:false},
+    status:{type:String,default:"En Attente",unique:false,undefined:false},
 }) ;
 module.exports = mongoose.model("Demande",DemandeSchema);
