@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<title>Demande Salle</title>
+</head>
+<body>
+    <%- include('header.ejs') %>
+<h3 id="title2">Faire Une Réservation</h3>
+<div>
+<form title="info personnelles" action="/demandeSalle" method="post">
+<label>Matricul</label>
+<input type="text" name="matricul" placeholder="Saisir le matricul..">
+<label>Nom</label>
+<input type="text" name="nom" placeholder="Saisir le nom..">
+<label>Prénom</label>
+<input type="text" name="prenom" placeholder="Saisir le prenom..">
+<label>Ecole</label>
+<select name="ecole">
+<option value="EIDIA">EIDIA</option>
+<option value="EBS">EBS</option>
+<option value="EIDIA">EMADU</option>
+<option value="INSA">INSA</option>
+<option value="EIDIA">FEP</option>
+<option value="EIB">EIB</option>
+</select>
+<label>Batiment</label>
+<select name="batiment">
+<option value="B1">B1</option>
+<option value="B2">B2</option>
+<option value="B3">B3</option>
+<option value="B4">B4</option>
+</select>
+<label>Salle</label>
+<select name="salle">
+<option value="0.1">0.1</option>
+<option value="0.2">0.2</option>
+<option value="0.3">0.3</option>
+<option value="0.4">0.4</option>
+</select>
+<label>Motif</label>
+<textarea type="text" name="motif" placeholder="Saisir le motif.." ></textarea>
+<label>Durée</label>
+<select name="duree">
+<option value="09:00-11:00">09:00 - 11:00</option>
+<option value="11:00-13:00">11:00 - 13:00</option>
+<option value="13:00-15:00">13:00 - 15:00</option>
+<option value="15:00-17:00">15:00 - 17:00</option>
+<option value="17:00-19:00">17:00 - 19:00</option>
+<option value="19:00-21:00">19:00 - 21:00</option>
+</select>
+<label>Date</label>
+<input id="calendar" type="text" name="date">
+
+<input type="submit" value="Demander">
+</form>
+</div>
+<script>
+    $(document).ready( function() {
+        const eventDates = JSON.parse('<%- JSON.stringify(dates) %>');
+    
+        // datepicker
+        $('#calendar').datepicker({
+            beforeShowDay: function( date ) {
+                var highlight = eventDates[date];
+                console.log('hi!',highlight)
+                if( highlight ) {
+                     return [true, "event", 'Tooltip text'];
+                } else {
+                     return [true, '', ''];
+                }
+            }
+        });
+    });</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" width="10%" height="10%">
+        <div class="header-right">
+          <a  href="/">Accueil</a>
+          <a href="/listDemande">Salle d'Attentes</a>
+          <a href="/valide" >Demandes Validées</a>
+          <a href="/reject">Demandes rejetées</a>
+          <a href="/users" class="active" >Liste Users</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+<h3 id="title">Liste des utilisateurs</h3>
+
+<div id = "demandesalle">
+<table id="demande">
+<tr>
+<th>Id_User</th>
+<th>Username</th>
+<th>Matricul</th>
+<th>Email</th>
+<th>Ecole</th>
+<th colspan="2">actions</th>
+</tr>
+<tr>
+    <% Array.from(User).forEach((item)=> { %>
+    <td><%=item?._id %></td>
+    <td><%=item?.username %></td>
+    <td><%=item?.matricul %></td>
+    <td><%=item?.email %></td>
+    <td><%=item?.ecole %></td>
+    <td><a href="/deleteU/<%= item._id %>"><img src="/delete.png" width="24" height="24"> </a></td>
+    </tr>
+    <% }) %>
+    </table>
+</div>
+</body>
+</html>

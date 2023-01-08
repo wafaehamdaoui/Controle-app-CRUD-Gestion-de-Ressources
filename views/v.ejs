@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.images {
+    height: 15em;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 20em;
+  }</style>
+</head>
+<body>
+    <section>
+  <div class="images">
+    <img src="logo.png">
+    <img src="logo.png">
+    <img src="logo.png">
+  </div>
+</section>
+</body>
+</html>
+
+
+
+
+
+
+let user = User.findOne({matricul:matr})
+    des=user.email
+    
+    var mailOptions = {
+        from: 'hamdaouiwafae2000@gmail.com',
+        to: des,
+        subject: 'Confirmation message',
+        text: 'Votre réservation est validée !'
+      };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+
+
+      User.findOne(mtr,(error,user)=>{
+        if(user){
+            
+            
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
+        }else{
+            res.send(error)
+        }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        marked: [
+        { 
+            date: new Date(year, month, 2), 
+            color: '#46c4f3'
+        }, { 
+            date: new Date(year, month, 10), 
+            color: '#7e56bd'
+        }, { 
+            date: new Date(year, month, 13), 
+            color: '#f13f77'
+        }, { 
+            date: new Date(year, month, 13), 
+            color: '#89d7c9'
+        }, { 
+            date: new Date(year, month, 21), 
+            color: '#ffc400'
+        }, { 
+            date: new Date(year, month, 21), 
+            color: '#8dec7d'
+        },{ 
+            recurring: { 
+                repeat: 'yearly', month: 4, day: 1
+            },
+            color: 'ffc400'
+        }
+    ]
+
+
+
+
+
+
+
+
+
+
+
+    Array.from(Demande).forEach((item)=> { 
+      eventDates[item.date] = item.date
+  })
+
+
+  <%var eventDates = [];
+eventDates.append(new Date( '12/27/2022' ));
+let i=0
+Array.from(Demande).forEach((item)=> { 
+    eventDates.append(item.date)%>
+<label ><%=eventDates[i]%></label>
+<%  i+=1; }); %>
+
+
+Demande.find({}, (err, items)=> {
+  Array.from(items).forEach((item)=> { 
+    dates.push(item?.date)
+  });
+})
+
+
+Array.from(Demande).forEach((item)=> { 
+  dates.append(item.date)
+});
+
+
+$('#datepickerId').datepicker({
+  beforeShowDay: function( date ) {
+      var highlight = highlightDate[date];
+      if( highlight ) {
+          return [true, "eventClass", 'Tooltip text'];
+      } else {
+          return [true, '', ''];
+      }
+  }
+});
+
+<script>
+  
+$( function() {
+    // An array of dates
+    var eventDates = {};
+    eventDates[new Date( '12/27/2022' )]=new Date( '12/27/2022' )
+    eventDates[new Date( '1/1/2023' )]=new Date( '1/1/2023' )
+    eventDates[new Date( '1/3/2023' )]=new Date( '1/3/2023' )
+    eventDates[new Date( '1/9/2023' )]=new Date( '1/9/2023' )
+    eventDates[new Date( '1/13/2023' )]=new Date( '1/13/2023' )
+    eventDates[new Date( '1/20/2023' )]=new Date( '1/20/2023' )
+    eventDates[new Date( '1/16/2023' )]=new Date( '1/16/2023' )
+    // datepicker
+    $('#calendar').datepicker({
+        beforeShowDay: function( date ) {
+            var highlight = eventDates[date];
+            if( highlight ) {
+                 return [true, "event", 'Tooltip text'];
+            } else {
+                 return [true, '', ''];
+            }
+        }
+    });
+});
+</script>
+
+
+    https://www.codexworld.com/jquery-ui-datepicker-highlight-specific-dates/
+
+
+    Demande.find({_id:req.params.id}, (err, items)=> {
+      res.render("myDemandes", { Demande: items });
+      console.log('hi',req.params.id)
+      })

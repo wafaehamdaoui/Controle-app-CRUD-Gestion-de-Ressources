@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<title>Liste Demande</title>
+</head>
+<body >
+    <div class="header">
+        <a href="#" class="logo"><img src="logo.png" width="70%"></a>
+        <div class="header-right">
+            <a  href="/">Accueil</a>
+            <a href="/userprofile">Ressource</a>
+            <a href="/myDemandes" class="active" >Mes Demandes</a>
+            <a href="/logout">Logout</a>
+            <a href="/about">A propos</a>
+          </div>
+      </div>
+<h3 id="title2">Mes information </h3>
+
+<ul>
+    <li style="font-size: large; ">Matricul: <%= user.matricul %></li>
+    <li style="font-size: large; ">Nom: <%= user.username %></li>
+    <li style="font-size: large; ">Email: <%= user.email %></li>
+    <li style="font-size: large; ">Ecole: <%= user.ecole %></li>
+  </ul>
+<h3 id="title">Mes Demandes </h3>
+<div id = "demandesalle">
+<table id="demande">
+<tr>
+<th>Id_Demande</th>
+<th>Ressource</th>
+<th>Date</th>
+<th>Durée</th>
+<th>Motif</th>
+<th>Status</th>
+<th>actions</th>
+</tr>
+<tr>
+    <% Array.from(Demande).forEach((item)=> {%>
+    <td><%=item?._id %></td>
+    <%if(item.batiment !== undefined && item.batiment !== null ){ %>
+    <td><%=item.batiment+item.salle%></td>
+    <% } ;
+    if(item.terrain !== undefined && item.terrain !== null ){ %>
+        <td><%=item.terrain%></td>
+    <% };
+    if(item.place !== undefined && item.place !== null){ %>
+        <td><%=item.place %></td>
+    <% };
+    if(item.pc !== undefined && item.pc !== null){ %>
+        <td><%=item.pc%></td>
+    <% }; %>
+    <td><%=item?.date %></td>
+    <td><%=item?.duree %></td>
+    <td><%=item?.motif %></td>
+    <td><%=item?.status %></td>
+        <td><a href="/Annuler/<%= item._id %>"></a><img src="/no.jpg" width="24" height="24">Annuler</td>
+    </tr>
+    <% }) %>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create account</title>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+
+    <h1 id="title2">
+        Sign up Page
+    </h1>
+    <form action="/register" method="POST">
+        <label for="username">UserName</label>
+        <input type="text" id="username" name="username">
+        <label for="username">Matricul</label>
+        <input type="text" id="matricul" name="matricul">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <label for="ecole">Ecole</label>
+        <select name="ecole">
+            <option value="EIDIA">EIDIA</option>
+            <option value="EBS">EBS</option>
+            <option value="EIDIA">EMADU</option>
+            <option value="INSA">INSA</option>
+            <option value="EIDIA">FEP</option>
+            <option value="EIB">EIB</option>
+            </select>
+        <button id="btn">Submit</button>
+    </form>
+    <div class="signin">
+        <p>Already have an account? <a href="/login">Sign in</a>.</p>
+    </div>
+      <div class="signin">
+        <p>Go back to the <a href="/">Home</a>.</p>
+      </div>
+</body>
+</html>

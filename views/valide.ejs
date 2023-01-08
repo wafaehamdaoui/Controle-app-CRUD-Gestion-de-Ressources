@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" width="10%" height="10%">
+        <div class="header-right">
+          <a  href="/">Accueil</a>
+          <a href="/listDemande">Salle d'Attentes</a>
+          <a href="/valide" class="active" >Demandes Validées</a>
+          <a href="/reject">Demandes rejetées</a>
+          <a href="/users" >Liste Users</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+<h3 id="title">Demandes de Validées</h3>
+<div>
+<form action="/listdemande" method="post">
+<label id="ress">Ressource</label>
+<select id="ressou" name="ressource" onchange="showtab()">
+<option value="terrain">Terrain Sport</option>
+<option value="sport">Salle Sport</option>
+<option value="sport">Salle Music</option>
+<option value="biblio">Espace Bibliothèque</option>
+<option value="computer">Computer</option>
+</select>
+</form>
+</div>
+<div id = "demandesalle" style="display:none;">
+<table id="demande">
+<tr>
+<th>Id_Demande</th>
+<th>Matricul</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Salle Sport</th>
+<th>Date</th>
+<th>Durée</th>
+<th>Motif</th>
+<th>Status</th>
+<th colspan="2">actions</th>
+</tr>
+<tr>
+    <% Array.from(Demande).forEach((item)=> { 
+        if(item?.salle !== undefined && item.status==="Validée" ){ %>
+    <td><%=item?._id %></td>
+    <td><%=item?.matricul %></td>
+    <td><%=item?.nom %></td>
+    <td><%=item?.prenom %></td>
+    <td><%=item?.batiment %>.<%=item?.salle %></td>
+    <td><%=item?.date %></td>
+    <td><%=item?.duree %></td>
+    <td><%=item?.motif %></td>
+    <td><%=item?.status %></td>
+    <td><a href="/deleteV/<%= item._id %>"><img src="/delete.png" width="24" height="24"> </a></td>
+    </tr>
+    <% }}) %>
+    </table>
+</div>
+<div id = "demandeterrain" style="display:block;">
+    <table id="demande">
+    <tr>
+    <th>Id_Demande</th>
+    <th>Matricul</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Terrain</th>
+    <th>Date</th>
+    <th>Durée</th>
+    <th>Motif</th>
+    <th>Status</th>
+    <th colspan="2">actions</th>
+    </tr>
+    <tr>
+        <% Array.from(Demande).forEach((item)=> {
+            if(item?.terrain !== undefined && item.status==="Validée"){ %>
+        <td><%=item?._id %></td>
+        <td><%=item?.matricul %></td>
+        <td><%=item?.nom %></td>
+        <td><%=item?.prenom %></td>
+        <td><%=item?.terrain %></td>
+        <td><%=item?.date %></td>
+        <td><%=item?.duree %></td>
+        <td><%=item?.motif %></td>
+        <td><%=item?.status %></td>
+        <td><a href="/deleteV/<%= item._id %>"><img src="/delete.png" width="24" height="24"> </a></td>
+        </tr>
+        <% }}) %>
+        </table>
+</div>
+<div id = "demandebiblio" style="display:none;">
+<table id="demande">
+<tr>
+<th>Id_Demande</th>
+<th>Matricul</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Espace de Travail</th>
+<th>Date</th>
+<th>Durée</th>
+<th>Motif</th>
+<th>Status</th>
+<th colspan="2">actions</th>
+</tr>
+<tr>
+    <% Array.from(Demande).forEach((item)=> {
+        if(item?.place !== undefined && item.status==="Validée"){ %>
+    <td><%=item?._id %></td>
+    <td><%=item?.matricul %></td>
+    <td><%=item?.nom %></td>
+    <td><%=item?.prenom %></td>
+    <td><%=item?.place %></td>
+    <td><%=item?.date %></td>
+    <td><%=item?.duree %></td>
+    <td><%=item?.motif %></td>
+    <td><%=item?.status %></td>
+    <td><a href="/deleteV/<%= item._id %>"><img src="/delete.png" width="24" height="24"> </a></td>
+    </tr>
+    <% }}) %>
+    </table>
+</div>
+<div id = "demandepc" style="display:none;">
+    <table id="demande">
+    <tr>
+    <th>Id_Demande</th>
+    <th>Matricul</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Computer</th>
+    <th>Date</th>
+    <th>Durée</th>
+    <th>Motif</th>
+    <th>Status</th>
+    <th colspan="2">actions</th>
+    </tr>
+    <tr>
+        <% Array.from(Demande).forEach((item)=> {
+            if(item?.pc !== undefined && item.status==="Validée"){ %>
+        <td><%=item?._id %></td>
+        <td><%=item?.matricul %></td>
+        <td><%=item?.nom %></td>
+        <td><%=item?.prenom %></td>
+        <td><%=item?.pc %></td>
+        <td><%=item?.date %></td>
+        <td><%=item?.duree %></td>
+        <td><%=item?.motif %></td>
+        <td><%=item?.status %></td>
+        <td><a href="/deleteV/<%= item._id %>"><img src="/delete.png" width="24" height="24"> </a></td>
+        </tr>
+        <% }}) %>
+        </table>
+    </div>
+    <script>
+        function showtab(){
+            getSelectedValue = document.getElementById("ressou").value;
+            if(getSelectedValue == "sport"){
+                document.getElementById("demandebiblio").style.display="none"
+                document.getElementById("demandepc").style.display="none"
+                document.getElementById("demandeterrain").style.display="none"
+                document.getElementById("demandesalle").style.display="block"
+            }else if(getSelectedValue == "terrain"){
+                document.getElementById("demandesalle").style.display="none"
+                document.getElementById("demandebiblio").style.display="none"
+                document.getElementById("demandepc").style.display="none"
+                document.getElementById("demandeterrain").style.display="block"
+            }else if(getSelectedValue == "biblio"){
+                document.getElementById("demandepc").style.display="none"
+                document.getElementById("demandeterrain").style.display="none"
+                document.getElementById("demandesalle").style.display="none"
+                document.getElementById("demandebiblio").style.display="block"
+            }else{
+                document.getElementById("demandesalle").style.display="none"
+                document.getElementById("demandebiblio").style.display="none"
+                document.getElementById("demandeterrain").style.display="none"
+                document.getElementById("demandepc").style.display="block"
+            }
+        }
+
+    </script>
+</body>
+</html>

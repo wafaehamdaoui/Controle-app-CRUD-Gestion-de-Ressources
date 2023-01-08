@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<title>Demande Espace Travail</title>
+</head>
+<body>
+    <%- include('header.ejs') %>
+<h3 id="title2">Faire Une Réservation</h3>
+<div>
+<form title="info personnelles" action="/demandeBiblio" method="post">
+<label>Matricul</label>
+<input type="text" name="matricul" placeholder="Saisir le matricul..">
+<label>Nom</label>
+<input type="text" name="nom" placeholder="Saisir le nom..">
+<label>Prénom</label>
+<input type="text" name="prenom" placeholder="Saisir le prenom..">
+<label>Ecole</label>
+<select name="ecole">
+<option value="EIDIA">EIDIA</option>
+<option value="EBS">EBS</option>
+<option value="EIDIA">EMADU</option>
+<option value="INSA">INSA</option>
+<option value="EIDIA">FEP</option>
+<option value="EIB">EIB</option>
+</select>
+<label>Type</label>
+<select name="type">
+<option value="s">Single</option>
+<option value="d">Double</option>
+<option value="t">Triple</option>
+<option value="q">Quadruple</option>
+</select>
+<label>Place</label>
+<select name="place">
+<option value="Espace 1">Num 01</option>
+<option value="Espace 2">Num 02</option>
+<option value="Espace 3">Num 03</option>
+<option value="Espace 4">Num 04</option>
+</select>
+<label>Motif</label>
+<textarea type="text" name="motif" placeholder="Saisir le motif.." ></textarea>
+<label>Durée</label>
+<select name="duree">
+<option value="09:00-11:00">09:00 - 11:00</option>
+<option value="11:00-13:00">11:00 - 13:00</option>
+<option value="13:00-15:00">13:00 - 15:00</option>
+<option value="15:00-17:00">15:00 - 17:00</option>
+<option value="17:00-19:00">17:00 - 19:00</option>
+<option value="19:00-21:00">19:00 - 21:00</option>
+</select>
+<label>Date</label>
+<input id="calendar" type="text" name="date">
+<input type="submit" value="Demander">
+
+</form>
+</div>
+<script>
+$(document).ready( function() {
+    const eventDates = JSON.parse('<%- JSON.stringify(dates) %>');
+
+    // datepicker
+    $('#calendar').datepicker({
+        beforeShowDay: function( date ) {
+            var highlight = eventDates[date];
+            console.log('hi!',highlight)
+            if( highlight ) {
+                 return [true, "event", 'Tooltip text'];
+            } else {
+                 return [true, '', ''];
+            }
+        }
+    });
+});</script>
+</body>
+</html>
