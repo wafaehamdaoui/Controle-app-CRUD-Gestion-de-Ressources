@@ -39,11 +39,14 @@
 <tr>
     <% Array.from(Demande).forEach((item)=> {%>
     <td><%=item?._id %></td>
-    <%if(item.batiment !== undefined && item.batiment !== null ){ %>
-    <td><%=item.batiment+item.salle%></td>
+    <%if(item.salle !== undefined && item.batiment !== null ){ %>
+    <td><%=item.salle+item.batiment%></td>
     <% } ;
     if(item.terrain !== undefined && item.terrain !== null ){ %>
         <td><%=item.terrain%></td>
+    <% };
+    if(item.music !== undefined && item.batiment !== null ){ %>
+        <td><%=item.batiment+item.music%></td>
     <% };
     if(item.place !== undefined && item.place !== null){ %>
         <td><%=item.place %></td>

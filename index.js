@@ -138,8 +138,9 @@ app.get("/demandePc",isLoggedIn,(req,res)=>{
     var dates = {};
     Demande.find({status:'Validée'}, (err, items)=> {
         for (let index = 0; index < items.length; index++) {
+            if(items[index]?.pc !== undefined){
             dates[items[index]?.date]  = items[index]?.date;
-            console.log('hi ',items[index]?.date)
+            console.log('hi ',items[index]?.date)}
         }
         res.render("demandePc.ejs", { dates: dates });
     })
