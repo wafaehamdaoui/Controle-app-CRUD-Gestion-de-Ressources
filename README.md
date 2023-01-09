@@ -116,15 +116,15 @@ When the admin remove a request(demande).
 
 ## `Summary`:
 Currently my application allows me:
-#### - Show tables:
+- Show tables:
 
-*1. Requests of `Demandes validées` of each catégory*
-*2. Requests of `terrain`*
-*3. Requests of `espace de travail`*
-*4. Request of `computer`*
-*5. `Demandes validées` of each category *
-*6. `Demandes rejetées` of each category*
-*6. `List users`*
+#### *1. Requests of `Demandes validées` of each catégory*
+#### *2. Requests of `terrain`*
+#### *3. Requests of `espace de travail`*
+#### *4. Request of `computer`*
+#### *5. `Demandes validées` of each category *
+#### *6. `Demandes rejetées` of each category*
+#### *6. `List users`*
 - Add an element in these tables
 - Modify an element in these tables
 - Delete an element in these tables
