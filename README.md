@@ -122,7 +122,7 @@ Currently my application allows me:
 #### *2. Requests of `terrain`*
 #### *3. Requests of `espace de travail`*
 #### *4. Request of `computer`*
-#### *5. `Demandes validées` of each category *
+#### *5. `Demandes validées` of each category*
 #### *6. `Demandes rejetées` of each category*
 #### *6. `List users`*
 - Add an element in these tables
