@@ -4,6 +4,7 @@
   "description": "une application CRUD",
   "main": "index.js",
   "scripts": {
+    "build": "npm install",
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
