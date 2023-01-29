@@ -75,7 +75,7 @@ app.post("/login",passport.authenticate("local",{
     failureRedirect:"/error"
 }),function (req, res){
     const {username,password} =req.body;
-    if(username=="wafae" && password=="123456"){
+    if(username=="admin" && password=="123456"){
         res.redirect("/listDemande")
     }
     else{
