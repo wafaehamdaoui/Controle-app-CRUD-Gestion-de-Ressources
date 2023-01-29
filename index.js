@@ -138,8 +138,9 @@ app.get("/demandePc",isLoggedIn,(req,res)=>{
     var dates = {};
     Demande.find({status:'Validée'}, (err, items)=> {
         for (let index = 0; index < items.length; index++) {
+            if(items[index]?.pc !== undefined){
             dates[items[index]?.date]  = items[index]?.date;
-            console.log('hi ',items[index]?.date)
+            console.log('hi ',items[index]?.date)}
         }
         res.render("demandePc.ejs", { dates: dates });
     })
@@ -176,31 +177,32 @@ app.get("/valide/:id",isLoggedIn,(req,res)=>{
     Demande.findByIdAndUpdate(id,{status:"Validée"},{new:true},(err,demande)=>{
     if(demande){
         mtr = demande.matricul;
+        console.log('matricul',mtr)
+        User.findOne({matricul:mtr},(error,dest)=>{
+            if(dest){
+                console.log("email",dest.email)
+                var mailOptions = {
+                    from: 'hamdaouiwafae2000@gmail.com',
+                    to: dest.email,
+                    subject: 'Confirmation message',
+                    text: 'Votre réservation est validée !'
+                  };
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
+            }else{
+                res.send(error)
+            }
+            })
         res.redirect("/valide")
     }else {
         res.send(err.message)
     }
     })
-    User.findOne(mtr,(error,user)=>{
-        if(user){
-            console.log("email",user.email)
-            var mailOptions = {
-                from: 'hamdaouiwafae2000@gmail.com',
-                to: user.email,
-                subject: 'Confirmation message',
-                text: 'Votre réservation est validée !'
-              };
-              transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log('Email sent: ' + info.response);
-                }
-              });
-        }else{
-            res.send(error)
-        }
-        })
 });
 app.get("/valideTous",isLoggedIn,(req,res)=>{
     Demande.updateMany({},{status:"Validée"},{new:true},(err,demande)=>{
@@ -269,12 +271,12 @@ app.get("/deleteU/:id",isLoggedIn,(req,res)=>{
 });
 
 app.post("/demandeSalle",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({salle:salle,duree:duree,date:date,batiment:batiment,status:"Validée"},(err,demande)=>{
     if(demande){
     res.render("message")
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -287,12 +289,12 @@ app.post("/demandeSalle",(req,res)=>{
     });
 
     app.post("/demandeMusic",(req,res)=>{
-        const {matricul,nom,prenom,ecole,date,duree,motif,salle,music,batiment,terrain,place,pc} =req.body;
+        const {matricul,nom,prenom,ecole,date,duree,motif,music,salle,batiment,terrain,place,pc} =req.body;
         Demande.findOne({music:music,duree:duree,date:date,batiment:batiment,status:"Validée"},(err,demande)=>{
         if(demande){
         res.render("message")
         }else {
-        const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc})
+        const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,music,salle,batiment,terrain,place,pc})
         demande.save(err=>{
         if(err){
         res.send(err.message)
@@ -330,12 +332,12 @@ app.post("/reject/:id",(req,res)=>{
 })
 
 app.post("/demandeTerrain",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({terrain:terrain,duree:duree,date:date,status:"Validée"},(err,demande)=>{
     if(demande){
     res.send({message:"ressouce already reserved"})
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,terrain,salle,batiment,place,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,terrain,salle,batiment,music,place,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -347,12 +349,12 @@ app.post("/demandeTerrain",(req,res)=>{
     })
     })
 app.post("/demandeBiblio",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({duree:duree,date:date,place:place,status:"Validée"},(err,demande)=>{
     if(demande){
     res.render("message.ejs")
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,terrain,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,music,terrain,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
@@ -365,12 +367,12 @@ app.post("/demandeBiblio",(req,res)=>{
     })
 
 app.post("/demandePc",(req,res)=>{
-    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,terrain,place,pc} =req.body;
+    const {matricul,nom,prenom,ecole,date,duree,motif,salle,batiment,music,terrain,place,pc} =req.body;
     Demande.findOne({duree:duree,date:date,pc:pc,status:"Validée"},(err,demande)=>{
     if(demande){
     res.send({message:"ressouce already reserved"})
     }else {
-    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,terrain,pc})
+    const demande = new Demande({matricul,nom,prenom,ecole,date,duree,motif,place,salle,batiment,music,terrain,pc})
     demande.save(err=>{
     if(err){
     res.send(err.message)
