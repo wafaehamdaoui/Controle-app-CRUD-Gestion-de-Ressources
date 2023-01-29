@@ -5,7 +5,6 @@ const UserSchema = new mongoose.Schema({
     matricul:String,
     email:String,
     password:String,
-    ecole:String
 }) ;
 UserSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User",UserSchema);
